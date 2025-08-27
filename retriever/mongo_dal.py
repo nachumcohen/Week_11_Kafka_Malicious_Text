@@ -1,7 +1,4 @@
-from pymongo import MongoClient
 import os
-from dotenv import load_dotenv
-from config import  env_path
 from mongo_connection import  MongoConnection
 
 class Dal:
@@ -18,20 +15,9 @@ class Dal:
         return collection
 
     def get_data(self):
-        data = self.tweets_collection.find({},{"_id":0}).sort("CreateDate",1).skip(100*self.retrieves_count).limit(100)
-        self.retrieves_count += 1
-        return list(data)
+        data = self.tweets_collection.find({}).sort("CreateDate",1).skip(self.retrieves_count).limit(100)
+        data_list = list(data)
+        self.retrieves_count += len(data_list)
+        return data_list
 
-
-    def _get_collection_size(self):
-        meta_data = self.tweets_collection.database.command("collstats", self.tweets_collection.name)
-        return meta_data["count"]
-
-
-    def check_work_finsh(self):
-        collection_size = self._get_collection_size()
-        if self.retrieves_count*100 < collection_size:
-            return True
-        print("all collection have been read.... the work finished")
-        return False
 
