@@ -28,6 +28,7 @@ class MongoConnection:
         if test:
             return connection
         else:
+            print("problem in mongo server connectin")
             return None
 
 
