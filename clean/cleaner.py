@@ -45,5 +45,12 @@ class Cleaner:
         lemmas = [lemmatizer.lemmatize(word) for word in word_tokens]
         self.text = ' '.join(lemmas)
 
-    def return_self_text(self):
+    def get_clean_text(self):
+        self.remove_punctuation()
+        self.remove_special_marks()
+        self.remove_whitespace()
+        self.remove_stopwords()
+        self.text_to_lower()
+        self.lemma_words()
+
         return self.text
