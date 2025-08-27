@@ -19,7 +19,3 @@ class Dal:
     def get_data(self):
         data = self.tweets_collection.find({},{"_id":0})
         return list(data)
-
-d = Dal()
-s = d.get_data()
-print(s)
