@@ -1,1 +1,1 @@
-blacklist_path = "../data/weapon_list.txt"
+blacklist_path = "data/weapon_list.txt"
