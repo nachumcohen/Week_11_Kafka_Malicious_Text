@@ -7,6 +7,7 @@ from nltk.corpus import stopwords
 # Download required NLTK resources (only needed once per environment)
 nltk.download('stopwords')
 nltk.download('wordnet')
+nltk.download('punkt_tab')
 
 lemmatizer = WordNetLemmatizer()
 
