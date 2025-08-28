@@ -21,9 +21,13 @@ class TweetPersister:
         print(consumer)
         for message in consumer:
             msg = message.value
-            print(msg)
             interesting_collection = db[collection_name]
-            interesting_collection.insert_one(msg)
+            try:
+                interesting_collection.insert_one(msg)
+            except Exception as e:
+                print(e)
+                pass
+
 
 
     def consume_tweets_antisemitic(self):
