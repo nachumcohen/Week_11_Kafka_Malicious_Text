@@ -13,5 +13,6 @@ class Producer:
             topic_name = 'enriched_preprocessed_tweets_antisemitic'
         else:
             topic_name = 'enriched_preprocessed_tweets_not_antisemitic'
-        self.producer.send(topic_name,tweet)
+        r = self.producer.send(topic_name,tweet)
+        print(r)
         self.producer.flush()
