@@ -4,7 +4,7 @@ from kafka import KafkaConsumer
 import json
 
 # Connect to local MongoDB instance and select the database
-client = MongoClient("mongodb://localhost:27017/")
+client = MongoClient("mongodb://mongodb:27017/")
 db = client["tweets_db"]
 
 
@@ -15,7 +15,7 @@ class TweetPersister:
         # Consume messages from a Kafka topic and insert them into a MongoDB collection
         consumer = KafkaConsumer(
             name_topic,
-            bootstrap_servers="localhost:9092",
+            bootstrap_servers='kafka:9093',
             value_deserializer=lambda v: json.loads(v.decode("utf-8")),
             auto_offset_reset="earliest",
             group_id=f"topic_{name_topic}",

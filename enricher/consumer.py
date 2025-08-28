@@ -5,7 +5,7 @@ class Consumer:
     def __init__(self):
         self.antisemitic_consumer = KafkaConsumer('preprocessed_tweets_antisemitic',
                                  group_id='my_consumer_group',
-                                 bootstrap_servers=['localhost:9092'],
+                                 bootstrap_servers=['kafka:9093'],
                                  auto_offset_reset='earliest', # Start consuming from the beginning
                                  enable_auto_commit=True,
                                  value_deserializer=lambda x: json.loads(x.decode('utf-8')),
@@ -13,7 +13,7 @@ class Consumer:
 
         self.not_antisemitic_consumer = KafkaConsumer('preprocessed_tweets_not_antisemitic',
                                  group_id='my_consumer_group_2',
-                                 bootstrap_servers=['localhost:9092'],
+                                 bootstrap_servers=['kafka:9093'],
                                  auto_offset_reset='earliest', # Start consuming from the beginning
                                  enable_auto_commit=True,
                                  value_deserializer=lambda x: json.loads(x.decode('utf-8')),
