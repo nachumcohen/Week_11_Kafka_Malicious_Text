@@ -1,4 +1,4 @@
-from persister.consumer_persister import TweetPersister
+from consumer_persister import TweetPersister
 
 
 def main():
