@@ -17,7 +17,7 @@ class TweetConsumer:
         # Consume messages from a Kafka topic, clean the text, and push processed message.
         consumer = KafkaConsumer(
             topic_name,
-            bootstrap_servers="localhost:9092",
+            bootstrap_servers="kafka:9093",
             value_deserializer=lambda v: json.loads(v.decode("utf-8")),
             auto_offset_reset="earliest",
             group_id=f"group_{topic_name}",
