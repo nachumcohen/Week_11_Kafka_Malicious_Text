@@ -8,7 +8,6 @@ producer = Producer()
 
 
 def main():
-    print("prrr")
     while True:
         data = dal.get_data()
         if len(data) == 0:
@@ -20,4 +19,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-

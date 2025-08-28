@@ -7,7 +7,7 @@ class MongoConnection:
     @staticmethod
     def _get_uri():
         load_dotenv(dotenv_path=env_path)
-        username = os.getenv("username")
+        username = os.getenv("db_username")
         password = os.getenv("password")
         uri = f"mongodb+srv://{username}:{password}@cluster0.6ycjkak.mongodb.net/"
         return uri
