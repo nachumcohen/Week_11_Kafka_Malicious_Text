@@ -19,13 +19,12 @@ class TweetConsumer:
             group_id=f"group_{topic_name}",
             enable_auto_commit=True
         )
-
+        clean_text = Cleaner()
         for message in consumer:
             msg = message.value
-            clean_text = Cleaner(msg["text"])
-            msg["clean_text"] = clean_text.get_clean_text()
-            push_method(msg)
+            msg["clean_text"] = clean_text.get_clean_text(msg["text"])
             print(msg)
+            push_method(msg)
 
 
     def push_antisemitic(self, msg):
