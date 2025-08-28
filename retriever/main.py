@@ -8,7 +8,6 @@ producer = Producer()
 
 
 def main():
-    print("prrr")
     while True:
         data = dal.get_data()
         if len(data) == 0:
@@ -16,6 +15,7 @@ def main():
             time.sleep(10)
             continue
         producer.produce(data)
+        time.sleep(10)
 
 
 if __name__ == "__main__":
