@@ -44,9 +44,12 @@ class Enricher:
 
     def _load_blacklist(self):
         black_list = []
+        black_list_cleaner = Cleaner()
         with open(blacklist_path, "r") as file:
             for line in file:
-                black_list.append(line.rstrip())
+                line = black_list_cleaner.get_clean_text(line)
+                print(line)
+                black_list.append(line)
         return black_list
 
     def _detected_weapons(self, tweet, black_list):
