@@ -35,8 +35,31 @@ services:
     depends_on:
       - kafka
 
-#  mongodb:
-#    image: mongodb/mongodb-community-server:latest
-#    container_name: mongodb
-#    ports:
-#      - "27017:27017"
+  enricher:
+    image: iran_enricher:1.0
+    container_name: iran_enricher
+    depends_on:
+      - kafka
+
+  mongodb:
+    image: mongodb/mongodb-community-server:latest
+    container_name: mongodb
+    ports:
+      - "27017:27017"
+
+  persister:
+    image: iran_persister:1.0
+    container_name: iran_persister
+    depends_on:
+      - kafka
+      - mongodb
+
+  dataRetrieval:
+    image: data_retrieval:1.0
+    container_name: data_retrieval
+    depends_on:
+      - mongodb
+    ports:
+      - "8000:8000"
+
+
