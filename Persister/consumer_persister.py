@@ -18,16 +18,15 @@ class TweetPersister:
             group_id=f"topic_{name_topic}",
             enable_auto_commit=True
         )
-        print(consumer)
         for message in consumer:
             msg = message.value
             interesting_collection = db[collection_name]
+            
             try:
                 interesting_collection.insert_one(msg)
             except Exception as e:
                 print(e)
                 pass
-
 
 
     def consume_tweets_antisemitic(self):
