@@ -1,0 +1,1 @@
+docker build -f retriever/Dockerfile -t iran_retriver:1.0 .
