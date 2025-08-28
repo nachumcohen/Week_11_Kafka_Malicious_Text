@@ -3,7 +3,7 @@ import json
 
 class Consumer:
     def __init__(self):
-        self.antisemitic_consumer = KafkaConsumer('raw_tweets_antisemitic',
+        self.antisemitic_consumer = KafkaConsumer('preprocessed_tweets_antisemitic',
                                  group_id='my_consumer_group',
                                  bootstrap_servers=['localhost:9092'],
                                  auto_offset_reset='earliest', # Start consuming from the beginning
@@ -11,7 +11,7 @@ class Consumer:
                                  value_deserializer=lambda x: json.loads(x.decode('utf-8')),
                                  consumer_timeout_ms = 5000)
 
-        self.not_antisemitic_consumer = KafkaConsumer('raw_tweets_not_antisemitic',
+        self.not_antisemitic_consumer = KafkaConsumer('preprocessed_tweets_not_antisemitic',
                                  group_id='my_consumer_group',
                                  bootstrap_servers=['localhost:9092'],
                                  auto_offset_reset='earliest', # Start consuming from the beginning
