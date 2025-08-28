@@ -29,8 +29,7 @@ class TweetPersister:
             # Insert each message into MongoDB, ignore errors [duplicates]
             try:
                 interesting_collection.insert_one(msg)
-            except Exception as e:
-                print(e)
+            except Exception:
                 pass
 
     def consume_tweets_antisemitic(self):

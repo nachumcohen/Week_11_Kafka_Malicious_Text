@@ -48,7 +48,6 @@ class Enricher:
         with open(blacklist_path, "r") as file:
             for line in file:
                 line = black_list_cleaner.get_clean_text(line)
-                print(line)
                 black_list.append(line)
         return black_list
 
@@ -78,12 +77,10 @@ class Enricher:
                 tweet["weapons_detected"] = self._detected_weapons(tweet["clean_text"], blacklist)
                 tweet["relevant_timestamp"] = self._detect_dates(tweet["text"])
                 self.producer.produce(tweet)
-                print(tweet)
 
             for tweet in semi_tweets:
                 self.assign_emotion(tweet)
                 tweet["weapons_detected"] = self._detected_weapons("clean_text", blacklist)
                 tweet["relevant_timestamp"] = self._detect_dates(tweet["text"])
                 self.producer.produce(tweet)
-                print(tweet)
 

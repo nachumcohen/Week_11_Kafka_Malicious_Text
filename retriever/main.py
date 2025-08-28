@@ -15,6 +15,9 @@ def main():
             time.sleep(10)
             continue
         producer.produce(data)
+        time.sleep(60)
+
+
 
 
 if __name__ == "__main__":
