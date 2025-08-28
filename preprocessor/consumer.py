@@ -30,7 +30,6 @@ class TweetConsumer:
             msg = message.value
             # Clean the text and add a new key 'clean_text'
             msg["clean_text"] = clean_text.get_clean_text(msg["text"])
-            print(msg)
             # Push the processed message using the specified method
             push_method(msg)
 
