@@ -7,12 +7,13 @@ import re
 from datetime import datetime
 from dateutil import parser
 from clean.cleaner import Cleaner
-
+from producer import Producer
 
 class Enricher:
     def __init__(self):
         self.consumer = Consumer()
         self.init_nltk()
+        self.producer = Producer()
 
     def __enter__(self):
         return self
@@ -73,11 +74,13 @@ class Enricher:
                 self.assign_emotion(tweet)
                 tweet["weapons_detected"] = self._detected_weapons(tweet["clean_text"], blacklist)
                 tweet["relevant_timestamp"] = self._detect_dates(tweet["text"])
+                self.producer.produce(tweet)
                 print(tweet)
 
             for tweet in semi_tweets:
                 self.assign_emotion(tweet)
                 tweet["weapons_detected"] = self._detected_weapons("clean_text", blacklist)
                 tweet["relevant_timestamp"] = self._detect_dates(tweet["text"])
+                self.producer.produce(tweet)
                 print(tweet)
 
