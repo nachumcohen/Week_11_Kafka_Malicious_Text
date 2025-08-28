@@ -12,7 +12,7 @@ class Consumer:
                                  consumer_timeout_ms = 5000)
 
         self.not_antisemitic_consumer = KafkaConsumer('preprocessed_tweets_not_antisemitic',
-                                 group_id='my_consumer_group',
+                                 group_id='my_consumer_group_2',
                                  bootstrap_servers=['localhost:9092'],
                                  auto_offset_reset='earliest', # Start consuming from the beginning
                                  enable_auto_commit=True,
