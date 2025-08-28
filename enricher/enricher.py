@@ -6,6 +6,7 @@ from config import blacklist_path
 import re
 from datetime import datetime
 from dateutil import parser
+from clean.cleaner import Cleaner
 
 
 class Enricher:
@@ -70,13 +71,13 @@ class Enricher:
             semi_tweets = self.consumer._consume(self.consumer.not_antisemitic_consumer)
             for tweet in anti_semi_tweets:
                 self.assign_emotion(tweet)
-                tweet["weapons_detected"] = self._detected_weapons(tweet, blacklist)
+                tweet["weapons_detected"] = self._detected_weapons(tweet["clean_text"], blacklist)
                 tweet["relevant_timestamp"] = self._detect_dates(tweet["text"])
                 print(tweet)
 
             for tweet in semi_tweets:
                 self.assign_emotion(tweet)
-                tweet["weapons_detected"] = self._detected_weapons(tweet, blacklist)
+                tweet["weapons_detected"] = self._detected_weapons("clean_text", blacklist)
                 tweet["relevant_timestamp"] = self._detect_dates(tweet["text"])
                 print(tweet)
 
