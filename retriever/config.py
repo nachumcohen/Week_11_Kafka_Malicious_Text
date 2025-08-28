@@ -1,1 +1,1 @@
-env_path = ".env"
+env_path = "../.env"
