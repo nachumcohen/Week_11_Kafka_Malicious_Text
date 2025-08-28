@@ -21,8 +21,13 @@ class TweetPersister:
         for message in consumer:
             msg = message.value
             interesting_collection = db[collection_name]
-            if not interesting_collection .find_one({"_id": msg["_id"]}):
-                interesting_collection .insert_one(msg)
+            
+            try:
+                interesting_collection.insert_one(msg)
+            except Exception as e:
+                print(e)
+                pass
+
 
     def consume_tweets_antisemitic(self):
         self.persist_tweet("enriched_preprocessed_tweets_antisemitic" ,"tweets_antisemitic")
