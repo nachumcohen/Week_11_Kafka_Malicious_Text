@@ -28,10 +28,6 @@ class Consumer:
     def _consume(self, consumer):
         print("Starting consumer...")
         for message in consumer:
-            print(f"Received: Topic={message.topic}, Partition={message.partition}, Offset={message.offset}, Value={message.value}")
+            yield message.value
 
-
-    def consume_all(self):
-        self._consume(self.antisemitic_consumer)
-        self._consume(self.not_antisemitic_consumer)
 
