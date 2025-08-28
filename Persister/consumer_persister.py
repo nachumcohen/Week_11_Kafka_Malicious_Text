@@ -18,13 +18,11 @@ class TweetPersister:
             group_id=f"topic_{name_topic}",
             enable_auto_commit=True
         )
-        print(consumer)
         for message in consumer:
             msg = message.value
-            print(msg)
             interesting_collection = db[collection_name]
-            interesting_collection.insert_one(msg)
-
+            if not interesting_collection .find_one({"_id": msg["_id"]}):
+                interesting_collection .insert_one(msg)
 
     def consume_tweets_antisemitic(self):
         self.persist_tweet("enriched_preprocessed_tweets_antisemitic" ,"tweets_antisemitic")
