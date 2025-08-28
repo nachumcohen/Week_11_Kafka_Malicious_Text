@@ -1,4 +1,4 @@
-from Preprocessor.consumer import TweetConsumer
+from consumer import TweetConsumer
 
 
 def main():
